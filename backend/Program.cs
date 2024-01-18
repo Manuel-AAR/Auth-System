@@ -9,7 +9,7 @@ var app = builder.Build();
 app.UseCors(policy =>
 {
     policy.AllowAnyHeader()
-        .WithMethods("POST", "PATCH", "DELETE")
+        .WithMethods("POST", "DELETE")
         .WithOrigins("localhost:80")
         .AllowCredentials();
 });

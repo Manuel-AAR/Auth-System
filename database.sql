@@ -1,0 +1,29 @@
+CREATE TABLE `User` (
+    `Id` INT NOT NULL AUTO_INCREMENT,
+    `Username` VARCHAR(30) NOT NULL,
+    `Email` VARCHAR(255) NOT NULL,
+    `Password` VARCHAR(64),
+    `ExternalId` VARCHAR(64),
+    `ExternalType` VARCHAR(16),
+    PRIMARY KEY (`Id`)
+);
+
+CREATE TABLE `TempUser` (
+    `Id` INT NOT NULL AUTO_INCREMENT,
+    `Username` VARCHAR(255) NOT NULL,
+    `Email` VARCHAR(255) NOT NULL,
+    `Password` VARCHAR(64) NOT NULL,
+    `Code` VARCHAR(6) NOT NULL,
+    PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `Session` (
+    `Id` INT NOT NULL AUTO_INCREMENT,
+    `UserId` INT NOT NULL,
+    `Token` VARCHAR(255) NOT NULL,
+    `CreatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `UpdatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `Closed` BIT NOT NULL,
+    PRIMARY KEY (`Id`),
+    FOREIGN KEY (`UserId`) REFERENCES `User`(`Id`)
+);
